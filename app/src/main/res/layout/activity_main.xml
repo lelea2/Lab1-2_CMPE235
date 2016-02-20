@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background"
+    android:scaleType = "centerCrop"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    tools:context="com.example.kdao.lab1_cmpe235.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="80px"
+        android:textStyle="bold"
+        android:textColor="@color/colorH1"
+        android:textAllCaps="true"
+        android:text="@string/welcome_message"
+        android:id="@+id/text_welcome"
+        android:layout_marginTop="50px"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="italic"
+        android:textSize="10pt"
+        android:textColor="@color/colorH1"
+        android:text="@string/subtitle"
+        android:id="@id/text_subtitle"
+        android:layout_below="@id/text_welcome"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10px"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/message_about"
+        android:id="@+id/button_about"
+        android:background="@color/colorButtonMain"
+        android:textColor="@color/colorButtonText"
+        android:textStyle="bold"
+        android:layout_below="@+id/text_subtitle"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="60dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/message_interact"
+        android:id="@+id/button_interact"
+        android:background="@color/colorButtonMain"
+        android:textColor="@color/colorButtonText"
+        android:textStyle="bold"
+        android:layout_below="@+id/button_about"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/message_sharing"
+        android:id="@+id/button_sharing"
+        android:background="@color/colorButtonMain"
+        android:textColor="@color/colorButtonText"
+        android:textStyle="bold"
+        android:layout_below="@+id/button_interact"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/message_nearby"
+        android:id="@+id/button_nearby"
+        android:background="@color/colorButtonMain"
+        android:textColor="@color/colorButtonText"
+        android:textStyle="bold"
+        android:layout_below="@+id/button_sharing"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/message_camera"
+        android:id="@+id/button_camera"
+        android:background="@color/colorButtonMain"
+        android:textColor="@color/colorButtonText"
+        android:textStyle="bold"
+        android:layout_below="@+id/button_nearby"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/message_comment"
+        android:id="@+id/button_comment"
+        android:background="@color/colorButtonMain"
+        android:textColor="@color/colorButtonText"
+        android:textStyle="bold"
+        android:layout_below="@+id/button_camera"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp" />
+
+</RelativeLayout>
+

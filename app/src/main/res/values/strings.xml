@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Lab1_CMPE235</string>
+    <string name="welcome_message">Smart Tree</string>
+    <string name="subtitle">Enjoy the city life...</string>
+    <string name="message_about">About</string>
+    <string name="message_interact">Interact</string>
+    <string name="message_sharing">Sharing</string>
+    <string name="message_nearby">Nearby</string>
+    <string name="message_camera">Camera</string>
+    <string name="message_comment">Comment</string>
+</resources>
