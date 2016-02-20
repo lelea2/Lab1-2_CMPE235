@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".SplashActivity" />
-        <activity android:name=".BarCodeActivity"></activity>
+        <activity android:name=".BarCodeActivity" />
+        <activity android:name=".CameraActivity"></activity>
     </application>
 
 </manifest>

@@ -12,7 +12,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="80px"
+        android:textSize="50dp"
         android:textStyle="bold"
         android:textColor="@color/colorH1"
         android:textAllCaps="true"
@@ -26,14 +26,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="italic"
-        android:textSize="10pt"
+        android:textSize="20dp"
         android:textColor="@color/colorH1"
         android:text="@string/subtitle"
-        android:id="@id/text_subtitle"
+        android:id="@+id/text_subtitle"
         android:layout_below="@id/text_welcome"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10px"
-        />
+        android:layout_marginTop="10px" />
 
     <Button
         android:layout_width="wrap_content"
