@@ -7,6 +7,7 @@ public class Tree {
     String name;
     String description;
     String barcode;
+    String url;
     Location location;
 
     public String getBarcode() {
@@ -15,6 +16,14 @@ public class Tree {
 
     public void setBarcode(String barcode) {
         this.barcode = barcode;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getName() {
