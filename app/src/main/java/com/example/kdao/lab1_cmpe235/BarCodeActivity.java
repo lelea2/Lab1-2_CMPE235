@@ -10,14 +10,18 @@ import android.support.v7.app.AppCompatActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
-public class BarCodeActivity extends AppCompatActivity implements OnClickListener{
+public class BarCodeActivity extends AppCompatActivity implements OnClickListener {
+
+    static String TAG = "BarCodeActivity";
 
     private Button scanBtn;
     private TextView formatTxt;
@@ -31,6 +35,7 @@ public class BarCodeActivity extends AppCompatActivity implements OnClickListene
         formatTxt = (TextView)findViewById(R.id.scan_format);
         contentTxt = (TextView)findViewById(R.id.scan_content);
         scanBtn.setOnClickListener(this);
+        handleHomeIconClick(); //handle homeicon click
     }
 
     /**
@@ -44,6 +49,28 @@ public class BarCodeActivity extends AppCompatActivity implements OnClickListene
         }
     }
 
+    /**
+     * Function handle home icon click
+     * navigate back to main activity
+     */
+    private void handleHomeIconClick() {
+        ImageView homeicon = (ImageView) findViewById(R.id.home_icon);
+        homeicon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "Comment action");
+                Intent mainView = new Intent(BarCodeActivity.this, MainActivity.class);
+                startActivity(mainView);
+            }
+        });
+    }
+
+    /**
+     * Function handle barcode scanning result
+     * @param requestCode
+     * @param resultCode
+     * @param intent
+     */
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if (scanningResult != null) {

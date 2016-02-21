@@ -106,6 +106,14 @@ public class MainActivity extends AppCompatActivity {
      * Handle direct to comment activity
      */
     private void commentClick() {
-
+        Button btnComment = (Button) findViewById(R.id.button_comment);
+        btnComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "Comment action");
+                Intent commentview = new Intent(MainActivity.this, CommentActivity.class);
+                startActivity(commentview);
+            }
+        });
     }
 }

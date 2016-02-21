@@ -23,6 +23,11 @@ import android.graphics.BitmapFactory;
 
 public class CameraActivity extends AppCompatActivity {
 
+    //Pre-select option for photo taking
+    static CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
+
+    static String TAG = "CameraActivity";
+
     Button b;
     ImageView viewImage;
 
@@ -31,8 +36,12 @@ public class CameraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
         handleCameraButton();
+        handleHomeIconClick();
     }
 
+    /**
+     * Handle click on camera button
+     */
     private void handleCameraButton() {
         b=(Button)findViewById(R.id.camera_btn);
         viewImage=(ImageView)findViewById(R.id.viewImage);
@@ -44,10 +53,23 @@ public class CameraActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Function handle home icon click
+     * navigate back to main activity
+     */
+    private void handleHomeIconClick() {
+        ImageView homeicon = (ImageView) findViewById(R.id.home_icon);
+        homeicon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "Comment action");
+                Intent mainView = new Intent(CameraActivity.this, MainActivity.class);
+                startActivity(mainView);
+            }
+        });
+    }
+
     private void selectImage() {
-
-        final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
-
         AlertDialog.Builder builder = new AlertDialog.Builder(CameraActivity.this);
         builder.setTitle("Add Photo!");
         builder.setItems(options, new DialogInterface.OnClickListener() {
