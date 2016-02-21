@@ -1,12 +1,21 @@
 package com.example.kdao.lab1_cmpe235.data;
 
 /**
- * Created by kdao on 2/21/16.
+ * Tree class contains information about circuit tree
  */
 public class Tree {
     String name;
     String description;
+    String barcode;
     Location location;
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
 
     public String getName() {
         return name;

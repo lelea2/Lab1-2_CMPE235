@@ -1,7 +1,7 @@
 package com.example.kdao.lab1_cmpe235.data;
 
 /**
- * Created by kdao on 2/21/16.
+ * Location class contains information about location of tree
  */
 public class Location {
     float latitude;
