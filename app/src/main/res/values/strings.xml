@@ -11,5 +11,5 @@
     <string name="title_activity_maps">Map</string>
     <string name="scan_title">Scan QRCode for tree information</string>
     <string name="scan_message">Scan</string>
-    <string name="google_maps_key"></string>
+    <string name="camera_btn">Take Photo!</string>
 </resources>

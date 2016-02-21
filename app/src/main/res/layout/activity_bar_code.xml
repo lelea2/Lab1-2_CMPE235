@@ -55,4 +55,13 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/scan_format" />
 
+    <ImageView
+        android:src="@drawable/home_icon"
+        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:scaleType="fitXY"
+        android:layout_below="@id/scan_content"
+        android:layout_alignRight="@+id/scan_text"
+        android:layout_alignEnd="@+id/scan_text" />
+
 </RelativeLayout>
