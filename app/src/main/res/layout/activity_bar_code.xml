@@ -10,12 +10,20 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.kdao.lab1_cmpe235.BarCodeActivity">
 
+    <ImageView
+        android:src="@drawable/home_icon"
+        android:id="@+id/home_icon"
+        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:scaleType="fitXY" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/scan_title"
         android:id="@+id/scan_text"
+        android:layout_below="@id/home_icon"
         android:textSize="23dp"
         android:textStyle="bold"
         android:layout_marginTop="50dp"
@@ -54,14 +62,5 @@
         android:textColor="#fff"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/scan_format" />
-
-    <ImageView
-        android:src="@drawable/home_icon"
-        android:layout_height="60dp"
-        android:layout_width="60dp"
-        android:scaleType="fitXY"
-        android:layout_below="@id/scan_content"
-        android:layout_alignRight="@+id/scan_text"
-        android:layout_alignEnd="@+id/scan_text" />
 
 </RelativeLayout>
