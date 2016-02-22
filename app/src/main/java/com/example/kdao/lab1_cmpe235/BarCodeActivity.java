@@ -84,5 +84,12 @@ public class BarCodeActivity extends AppCompatActivity implements OnClickListene
             toast.show();
         }
     }
+
+    /**
+     * Function create tree list view
+     */
+    private void createTreeListView() {
+
+    }
 }
 
