@@ -4,12 +4,19 @@ package com.example.kdao.lab1_cmpe235.data;
  * Location class contains information about location of tree
  */
 public class Location {
-    float latitude;
-    float longitude;
+    double latitude;
+    double longitude;
     String address;
     String name;
 
-    public float getLatitude() {
+    public Location(double latitude, double longitude, String address, String name) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.address = address;
+        this.name = name;
+    }
+
+    public double getLatitude() {
         return latitude;
     }
 
@@ -17,7 +24,7 @@ public class Location {
         this.latitude = latitude;
     }
 
-    public float getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 

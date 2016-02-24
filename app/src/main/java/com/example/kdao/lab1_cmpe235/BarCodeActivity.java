@@ -19,6 +19,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
+import com.example.kdao.lab1_cmpe235.data.Tree;
+import com.example.kdao.lab1_cmpe235.data.Location;
+import java.util.*;
+
 public class BarCodeActivity extends AppCompatActivity implements OnClickListener {
 
     static String TAG = "BarCodeActivity";
@@ -26,6 +30,7 @@ public class BarCodeActivity extends AppCompatActivity implements OnClickListene
     private Button scanBtn;
     private TextView formatTxt;
     private TextView contentTxt;
+    private List<Tree> myTrees = new ArrayList<Tree>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +94,14 @@ public class BarCodeActivity extends AppCompatActivity implements OnClickListene
      * Function create tree list view
      */
     private void createTreeListView() {
-
+        myTrees.add(new Tree("Landmark art deco-style theater presenting Broadway musicals & " +
+                "ballet & dance performances.", "12345",
+                R.drawable.barcode_icon, "", new Location(37.32, -121.89, "255 S Almaden Blvd, " +
+                "San " +
+                "Jose, CA 95113", "San Jose Center for the Performing Arts")));
+        myTrees.add(new Tree("Home of Shark", "54321",
+                R.drawable.barcode_icon, "", new Location(37.33, -121.90, "525 West Santa Clara " +
+                "Street, San Jose", "SAP center")));
     }
 }
 

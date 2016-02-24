@@ -8,8 +8,18 @@ public class Tree {
     String description;
     String barcode;
     String url;
+    int icon;
     Location location;
 
+    public Tree(String description, String barcode, int icon, String url, Location location) {
+        this.description = description;
+        this.barcode = barcode;
+        this.icon = icon;
+        this.url = url;
+        this.location = location;
+    }
+
+    //Set up getter, setter
     public String getBarcode() {
         return barcode;
     }
@@ -24,14 +34,6 @@ public class Tree {
 
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Location getLocation() {

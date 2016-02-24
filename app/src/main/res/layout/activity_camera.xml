@@ -31,8 +31,8 @@
     <ImageView
         android:id="@+id/viewImage"
         android:src="@drawable/theatre"
-        android:layout_width="120pt"
-        android:layout_height="120pt"
+        android:layout_width="200pt"
+        android:layout_height="200pt"
         android:scaleType="fitXY"
         android:layout_below="@id/camera_btn"
         android:layout_marginTop="20px"
