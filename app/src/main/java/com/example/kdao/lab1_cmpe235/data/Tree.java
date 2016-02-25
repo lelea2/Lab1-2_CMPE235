@@ -28,6 +28,14 @@ public class Tree {
         this.barcode = barcode;
     }
 
+    public int getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
+    }
+
     public String getUrl() {
         return url;
     }
