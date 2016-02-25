@@ -27,8 +27,11 @@ public class CameraActivity extends AppCompatActivity {
     static CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
 
     static String TAG = "CameraActivity";
+    static int TAKE_PHOTO = 1;
+    static int CHOOSE_PHOTO = 2;
 
-    Button b;
+    Button cameraButton;
+    Button shareButton;
     ImageView viewImage;
 
     @Override
@@ -37,15 +40,29 @@ public class CameraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_camera);
         handleCameraButton();
         handleHomeIconClick();
+        handleSharePhoto();
     }
 
     /**
      * Handle click on camera button
      */
     private void handleCameraButton() {
-        b=(Button)findViewById(R.id.camera_btn);
+        cameraButton=(Button)findViewById(R.id.camera_btn);
         viewImage=(ImageView)findViewById(R.id.viewImage);
-        b.setOnClickListener(new View.OnClickListener() {
+        cameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectImage();
+            }
+        });
+    }
+
+    /**
+     * Private function to handle share photo
+     */
+    private void handleSharePhoto() {
+        shareButton = (Button)findViewById(R.id.image_share_btn);
+        shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectImage();
@@ -75,18 +92,17 @@ public class CameraActivity extends AppCompatActivity {
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
-                if (options[item].equals("Take Photo")) {
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    File f = new File(android.os.Environment.getExternalStorageDirectory(), "temp.jpg");
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
-                    startActivityForResult(intent, 1);
-                } else if (options[item].equals("Choose from Gallery")) {
-                    Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(intent, 2);
-
-                } else if (options[item].equals("Cancel")) {
-                    dialog.dismiss();
-                }
+            if (options[item].equals("Take Photo")) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                File f = new File(android.os.Environment.getExternalStorageDirectory(), "temp.jpg");
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+                startActivityForResult(intent, TAKE_PHOTO);
+            } else if (options[item].equals("Choose from Gallery")) {
+                Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, CHOOSE_PHOTO);
+            } else if (options[item].equals("Cancel")) {
+                dialog.dismiss();
+            }
             }
         });
         builder.show();
@@ -95,8 +111,8 @@ public class CameraActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == 1) {
+        if (resultCode == RESULT_OK) { //Image comes straight from take photo
+            if (requestCode == TAKE_PHOTO) {
                 File f = new File(Environment.getExternalStorageDirectory().toString());
                 for (File temp : f.listFiles()) {
                     if (temp.getName().equals("temp.jpg")) {
@@ -135,7 +151,7 @@ public class CameraActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            } else if (requestCode == 2) {
+            } else if (requestCode == CHOOSE_PHOTO) { //Image comes from gallery
                 Uri selectedImage = data.getData();
                 String[] filePath = { MediaStore.Images.Media.DATA };
                 Cursor c = getContentResolver().query(selectedImage,filePath, null, null, null);
