@@ -8,6 +8,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.TextView;
+import android.widget.Switch;
+import android.widget.CompoundButton;
 
 import com.example.kdao.lab1_cmpe235.data.Location;
 import com.example.kdao.lab1_cmpe235.data.Tree;
@@ -18,6 +21,10 @@ public class InteractActivity extends AppCompatActivity {
 
     private HashMap<String, Tree> hmTrees= new HashMap<String, Tree>();
     final Context context = this;
+    Switch switchButton;
+    TextView textView;
+    String switchOn = "ON";
+    String switchOff = "OFF";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +32,29 @@ public class InteractActivity extends AppCompatActivity {
         createHMTrees();
         handleSession();
         setContentView(R.layout.activity_interact);
+        handleSwitchButton();
+    }
+
+    /**
+     * Helper function to handle switch button
+     */
+    private void handleSwitchButton() {
+        // For first switch button
+        switchButton = (Switch) findViewById(R.id.switchButton);
+        textView = (TextView) findViewById(R.id.textView);
+
+        switchButton.setChecked(true);
+        switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean bChecked) {
+                if (bChecked) {
+                    textView.setText(switchOn);
+                } else {
+                    textView.setText(switchOff);
+                }
+            }
+        });
+
     }
 
     /*
@@ -53,7 +83,7 @@ public class InteractActivity extends AppCompatActivity {
             currentTree = hmTrees.get(value);
         }
         if (currentTree != null) {
-            createCurrentTreeView();
+            createCurrentTreeView(currentTree);
         } else {
             showAlertDialog();
         }
@@ -62,7 +92,7 @@ public class InteractActivity extends AppCompatActivity {
     /**
      * Create view for current tree
      */
-    private void createCurrentTreeView() {
+    private void createCurrentTreeView(Tree mytree) {
 
     }
 
