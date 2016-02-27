@@ -83,8 +83,12 @@ public class BarCodeActivity extends AppCompatActivity implements OnClickListene
         if (scanningResult != null) {
             String scanContent = scanningResult.getContents();
             String scanFormat = scanningResult.getFormatName();
-            formatTxt.setText("FORMAT: " + scanFormat);
-            contentTxt.setText("CONTENT: " + scanContent);
+            //formatTxt.setText("FORMAT: " + scanFormat);
+            //contentTxt.setText("CONTENT: " + scanContent);
+            //Direct user to interact page with value of barcode
+            Intent launchActivity = new Intent(BarCodeActivity.this, InteractActivity.class);
+            launchActivity.putExtra("SESSION_ID", scanContent);
+            startActivity(launchActivity);
         } else {
             Toast toast = Toast.makeText(getApplicationContext(),
                     "No scan data received!", Toast.LENGTH_SHORT);

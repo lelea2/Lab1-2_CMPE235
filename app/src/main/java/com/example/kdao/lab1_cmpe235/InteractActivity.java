@@ -4,6 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Context;
+import android.content.Intent;
 
 import com.example.kdao.lab1_cmpe235.data.Location;
 import com.example.kdao.lab1_cmpe235.data.Tree;
@@ -12,14 +16,14 @@ import java.util.*;
 
 public class InteractActivity extends AppCompatActivity {
 
-    private List<Tree> myTrees = new ArrayList<Tree>();
     private HashMap<String, Tree> hmTrees= new HashMap<String, Tree>();
-
+    final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createHMTrees();
+        handleSession();
         setContentView(R.layout.activity_interact);
     }
 
@@ -37,6 +41,58 @@ public class InteractActivity extends AppCompatActivity {
         hmTrees.put("8f14886c-d267-44b8-8518-8cf363634929", new Tree("Home of Shark",
                 R.drawable.barcode_icon, "", new Location(37.33, -121.90, "525 West Santa Clara " +
                 "Street, San Jose", "SAP center")));
+    }
+
+    //Function handle session passed by other activity
+    private void handleSession() {
+        Bundle extras = getIntent().getExtras();
+        String value = "";
+        Tree currentTree = null;
+        if (extras != null) {
+            value = extras.getString("SESSION_ID");
+            currentTree = hmTrees.get(value);
+        }
+        if (currentTree != null) {
+            createCurrentTreeView();
+        } else {
+            showAlertDialog();
+        }
+    }
+
+    /**
+     * Create view for current tree
+     */
+    private void createCurrentTreeView() {
+
+    }
+
+    /**
+     * Helper function to show alert box
+     */
+    private void showAlertDialog() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                context);
+
+        // set title
+        alertDialogBuilder.setTitle("My Tree View");
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage("No information for tree exist. Please try again")
+                .setCancelable(false)
+                .setPositiveButton("Try Again", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //Navigate back to barcode page
+                        Intent activity = new Intent(InteractActivity.this, BarCodeActivity.class);
+                        startActivity(activity);
+                    }
+                });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
     }
 
 }
