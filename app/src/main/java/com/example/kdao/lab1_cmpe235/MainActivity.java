@@ -7,8 +7,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.content.Intent;
 import android.view.View;
-
-import java.util.logging.SocketHandler;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,13 +45,17 @@ public class MainActivity extends AppCompatActivity {
      * Handle direct to interact activity page
      */
     private void interactClick() {
+        //Notice user to click choose a tree by barcode first
         Button btnInteract = (Button) findViewById(R.id.button_interact);
         btnInteract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "Interact action");
-                Intent interactView = new Intent(MainActivity.this, InteractActivity.class);
-                startActivity(interactView);
+                Toast my_toast = Toast.makeText(getApplicationContext(), "Please scan barcode for" +
+                        " tree view", Toast.LENGTH_LONG);
+                my_toast.show();
+                //Intent interactView = new Intent(MainActivity.this, InteractActivity.class);
+                //startActivity(interactView);
             }
         });
     }
@@ -66,8 +69,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "Sharing action");
-                Intent sharingView = new Intent(MainActivity.this, SharingActivity.class);
-                startActivity(sharingView);
+                Toast my_toast = Toast.makeText(getApplicationContext(), "Please choose image in " +
+                        "camera for sharing", Toast.LENGTH_LONG);
+                my_toast.show();
+                //Intent sharingView = new Intent(MainActivity.this, SharingActivity.class);
+                //startActivity(sharingView);
             }
         });
     }

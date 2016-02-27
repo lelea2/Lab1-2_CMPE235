@@ -33,7 +33,6 @@ public class BarCodeActivity extends AppCompatActivity implements OnClickListene
     private Button scanBtn;
     private TextView formatTxt;
     private TextView contentTxt;
-    private List<Tree> myTrees = new ArrayList<Tree>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +43,6 @@ public class BarCodeActivity extends AppCompatActivity implements OnClickListene
         contentTxt = (TextView)findViewById(R.id.scan_content);
         scanBtn.setOnClickListener(this);
         handleHomeIconClick(); //handle homeicon click
-        createTreeListView();
-        populateListView();
     }
 
     /**
@@ -92,54 +89,6 @@ public class BarCodeActivity extends AppCompatActivity implements OnClickListene
             Toast toast = Toast.makeText(getApplicationContext(),
                     "No scan data received!", Toast.LENGTH_SHORT);
             toast.show();
-        }
-    }
-
-    /**
-     * Function create tree list view
-     */
-    private void createTreeListView() {
-        myTrees.add(new Tree("Landmark art deco-style theater presenting Broadway musicals & " +
-                "ballet & dance performances.", "12345",
-                R.drawable.barcode_icon, "", new Location(37.32, -121.89, "255 S Almaden Blvd, " +
-                "San " +
-                "Jose, CA 95113", "San Jose Center for the Performing Arts")));
-        myTrees.add(new Tree("Home of Shark", "54321",
-                R.drawable.barcode_icon, "", new Location(37.33, -121.90, "525 West Santa Clara " +
-                "Street, San Jose", "SAP center")));
-    }
-
-    /**
-     * Function to populate list view
-     */
-    private void populateListView() {
-        ArrayAdapter<Tree> adapter = new MyListAdapter();
-        ListView list = (ListView) findViewById(R.id.treesListView);
-        list.setAdapter(adapter);
-    }
-
-    //Private class create for tree list function
-    private class MyListAdapter extends ArrayAdapter<Tree> {
-        public MyListAdapter() {
-            super(BarCodeActivity.this, R.layout.item_view, myTrees);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            // Make sure we have a view to work with (may have been given null)
-            View itemView = convertView;
-            if (itemView == null) {
-                itemView = getLayoutInflater().inflate(R.layout.item_view, parent, false);
-            }
-
-            // Find the car to work with.
-            Tree currentTree = myTrees.get(position);
-
-            // Fill the view
-            ImageView imageView = (ImageView)itemView.findViewById(R.id.item_icon);
-            imageView.setImageResource(currentTree.getIcon());
-
-            return itemView;
         }
     }
 }

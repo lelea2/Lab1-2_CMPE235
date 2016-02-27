@@ -6,26 +6,15 @@ package com.example.kdao.lab1_cmpe235.data;
 public class Tree {
     String name;
     String description;
-    String barcode;
     String url;
     int icon;
     Location location;
 
-    public Tree(String description, String barcode, int icon, String url, Location location) {
+    public Tree(String description, int icon, String url, Location location) {
         this.description = description;
-        this.barcode = barcode;
         this.icon = icon;
         this.url = url;
         this.location = location;
-    }
-
-    //Set up getter, setter
-    public String getBarcode() {
-        return barcode;
-    }
-
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
     }
 
     public int getIcon() {
