@@ -14,6 +14,8 @@ import android.widget.Switch;
 import android.widget.CompoundButton;
 import android.widget.Button;
 
+import android.util.Log;
+
 import com.example.kdao.lab1_cmpe235.data.Location;
 import com.example.kdao.lab1_cmpe235.data.Tree;
 
@@ -28,12 +30,14 @@ public class InteractActivity extends AppCompatActivity {
     String switchOn = "ON";
     String switchOff = "OFF";
 
+    static String TAG = "InteractActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_interact);
         createHMTrees();
         handleSession();
-        setContentView(R.layout.activity_interact);
         handleSwitchButton();
     }
 
@@ -82,6 +86,7 @@ public class InteractActivity extends AppCompatActivity {
         Tree currentTree = null;
         if (extras != null) {
             value = extras.getString("SESSION_ID");
+            Log.i(TAG, "SESSION_ID=" + value);
             currentTree = hmTrees.get(value);
         }
         if (currentTree != null) {
@@ -112,6 +117,7 @@ public class InteractActivity extends AppCompatActivity {
                 launchActivity.putExtra("longitude", myLocation.getLongitude());
                 launchActivity.putExtra("latitude", myLocation.getLatitude());
                 launchActivity.putExtra("name", myLocation.getName());
+                launchActivity.putExtra("address", myLocation.getAddress());
                 startActivity(launchActivity);
             }
         });

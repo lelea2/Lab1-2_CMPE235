@@ -87,6 +87,7 @@ public class BarCodeActivity extends AppCompatActivity implements OnClickListene
             //contentTxt.setText("CONTENT: " + scanContent);
             //Direct user to interact page with value of barcode
             Intent launchActivity = new Intent(BarCodeActivity.this, InteractActivity.class);
+            Log.i(TAG, "Barcode content=" + scanContent);
             launchActivity.putExtra("SESSION_ID", scanContent);
             startActivity(launchActivity);
         } else {
