@@ -9,7 +9,7 @@
     <string name="message_camera">Camera</string>
     <string name="message_comment">Comment</string>
     <string name="title_activity_maps">Map</string>
-    <string name="scan_title">Scan QRCode for tree information</string>
+    <string name="scan_title">Scan for tree information</string>
     <string name="scan_message">Scan</string>
     <string name="camera_btn">Take Photo!</string>
     <string name="menu_settings">Settings</string>

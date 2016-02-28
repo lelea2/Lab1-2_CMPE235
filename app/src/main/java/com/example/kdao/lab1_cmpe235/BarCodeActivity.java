@@ -30,7 +30,7 @@ public class BarCodeActivity extends AppCompatActivity implements OnClickListene
 
     static String TAG = "BarCodeActivity";
 
-    private Button scanBtn;
+    private ImageView scanBtn;
     private TextView formatTxt;
     private TextView contentTxt;
 
@@ -38,7 +38,7 @@ public class BarCodeActivity extends AppCompatActivity implements OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bar_code);
-        scanBtn = (Button)findViewById(R.id.scan_button);
+        scanBtn = (ImageView)findViewById(R.id.scan_button);
         formatTxt = (TextView)findViewById(R.id.scan_format);
         contentTxt = (TextView)findViewById(R.id.scan_content);
         scanBtn.setOnClickListener(this);
