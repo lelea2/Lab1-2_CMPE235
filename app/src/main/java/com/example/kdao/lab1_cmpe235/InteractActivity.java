@@ -2,6 +2,7 @@ package com.example.kdao.lab1_cmpe235;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.app.AlertDialog;
@@ -11,6 +12,7 @@ import android.content.Intent;
 import android.widget.TextView;
 import android.widget.Switch;
 import android.widget.CompoundButton;
+import android.widget.Button;
 
 import com.example.kdao.lab1_cmpe235.data.Location;
 import com.example.kdao.lab1_cmpe235.data.Tree;
@@ -93,7 +95,26 @@ public class InteractActivity extends AppCompatActivity {
      * Create view for current tree
      */
     private void createCurrentTreeView(Tree mytree) {
+        final Location myLocation = mytree.getLocation();
+        TextView treeName = (TextView) findViewById(R.id.tree_name);
+        TextView treeDesc = (TextView) findViewById(R.id.tree_description);
+        TextView treeAddr = (TextView) findViewById(R.id.tree_address);
+        treeName.setText(myLocation.getName());
+        treeDesc.setText(mytree.getDescription());
+        treeAddr.setText(myLocation.getAddress());
 
+        //Set up handler for view location button for specific tree
+        Button viewLoc = (Button) findViewById(R.id.tree_view_location);
+        viewLoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent launchActivity = new Intent(InteractActivity.this, MapsActivity.class);
+                launchActivity.putExtra("longitude", myLocation.getLongitude());
+                launchActivity.putExtra("latitude", myLocation.getLatitude());
+                launchActivity.putExtra("name", myLocation.getName());
+                startActivity(launchActivity);
+            }
+        });
     }
 
     /**

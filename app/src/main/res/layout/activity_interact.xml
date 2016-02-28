@@ -18,7 +18,8 @@
         android:paddingRight="15px"
         android:paddingBottom="15px"
         android:paddingTop="15px"
-        android:id="@+id/tree_detail" >
+        android:id="@+id/tree_detail"
+        android:orientation="vertical">
 
         <ImageView
             android:src="@drawable/barcode_icon"
@@ -38,11 +39,13 @@
             android:layout_height="match_parent"
             android:id="@+id/tree_address" />
         <Button
+            android:id="@+id/tree_view_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#fff"
             android:text="View Location" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
