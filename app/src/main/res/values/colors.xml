@@ -7,5 +7,6 @@
     <color name="colorButtonMain">#0080ff</color>
     <color name="colorButtonAction">#ff3232</color>
     <color name="colorButtonText">#fff</color>
+    <color name="colorButtonIcon">#0080ff</color>
     <color name="colorBackground">#236B8E</color>
 </resources>

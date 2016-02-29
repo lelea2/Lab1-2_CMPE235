@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/activity_background"
     android:scaleType = "centerCrop"
@@ -37,104 +37,69 @@
             android:id="@+id/text_subtitle"
             android:layout_below="@id/text_welcome"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10px" />
+            android:layout_marginTop="15px" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/message_about"
-            android:id="@+id/button_about"
-            android:background="@color/colorButtonMain"
-            android:textColor="@color/colorButtonText"
-            android:textStyle="bold"
+        <TableLayout
+            android:id="@+id/gridview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="*"
             android:layout_below="@+id/text_subtitle"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="60dp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/message_interact"
-            android:id="@+id/button_interact"
-            android:background="@color/colorButtonMain"
-            android:textColor="@color/colorButtonText"
-            android:textStyle="bold"
-            android:layout_below="@+id/button_about"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="20dp" />
-
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/message_sharing"
-            android:id="@+id/button_sharing"
-            android:background="@color/colorButtonMain"
-            android:textColor="@color/colorButtonText"
-            android:textStyle="bold"
-            android:layout_below="@+id/button_interact"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="20dp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/message_nearby"
-            android:id="@+id/button_nearby"
-            android:background="@color/colorButtonMain"
-            android:textColor="@color/colorButtonText"
-            android:textStyle="bold"
-            android:layout_below="@+id/button_sharing"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="20dp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/message_camera"
-            android:id="@+id/button_camera"
-            android:background="@color/colorButtonMain"
-            android:textColor="@color/colorButtonText"
-            android:textStyle="bold"
-            android:layout_below="@+id/button_nearby"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="20dp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/message_comment"
-            android:id="@+id/button_comment"
-            android:background="@color/colorButtonMain"
-            android:textColor="@color/colorButtonText"
-            android:textStyle="bold"
-            android:layout_below="@+id/button_camera"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="20dp" />
-
+            android:layout_marginTop="80dp">
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40px">
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/button_about"
+                    android:background="@drawable/qrcode_icon"
+                    android:scaleType="fitXY"
+                    android:layout_margin="8dp" />
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="fitXY"
+                    android:id="@+id/button_interact"
+                    android:background="@drawable/interact_icon"
+                    android:layout_margin="8dp" />
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40px">
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="fitXY"
+                    android:id="@+id/button_sharing"
+                    android:background="@drawable/sharing_icon"
+                    android:layout_margin="8dp" />
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/button_nearby"
+                    android:background="@drawable/nearby_icon"
+                    android:layout_margin="8dp" />
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40px">
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/button_camera"
+                    android:background="@drawable/camera_icon"
+                    android:layout_margin="8dp" />
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/button_comment"
+                    android:background="@drawable/comment_icon"
+                    android:layout_margin="8dp" />
+            </TableRow>
+        </TableLayout>
     </RelativeLayout>
 </ScrollView>
