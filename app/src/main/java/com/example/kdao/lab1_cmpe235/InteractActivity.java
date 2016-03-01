@@ -315,6 +315,8 @@ public class InteractActivity extends YouTubeBaseActivity implements
         @Override
         public void onError(YouTubePlayer.ErrorReason errorReason) {
             // Called when an error occurs.
+            Log.e(TAG, errorReason.toString());
+            showMessage("Error");
         }
     }
 
