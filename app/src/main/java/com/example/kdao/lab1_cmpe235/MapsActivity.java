@@ -46,7 +46,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             String address = extras.getString("address");
             // Add a marker in chosen location
             LatLng sydney = new LatLng(latitude, longitude);
-            mMap.addMarker(new MarkerOptions().position(sydney).title(name + "\n" + address));
+            mMap.addMarker(new MarkerOptions().position(sydney).title(name));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         } else {
 

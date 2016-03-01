@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,62 +10,89 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.kdao.lab1_cmpe235.InteractActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFE0"
-        android:paddingLeft="15px"
-        android:paddingRight="15px"
-        android:paddingBottom="15px"
-        android:paddingTop="15px"
-        android:id="@+id/tree_detail"
-        android:orientation="vertical">
-
-        <ImageView
-            android:src="@drawable/barcode_icon"
-            android:id="@+id/tree_image"
-            android:layout_height="60dp"
-            android:layout_width="60dp" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="#444"
-            android:id="@+id/tree_name" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="#444"
-            android:id="@+id/tree_description" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="#444"
-            android:id="@+id/tree_address" />
-        <Button
-            android:id="@+id/tree_view_location"
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <TableRow android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#fff"
-            android:text="View Location" />
-    </LinearLayout>
+            android:background="#FFFFE0"
+            android:padding="20dp"
+            android:id="@+id/tree_detail">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/tree_detail">
-
-        <Switch
-            android:id="@+id/switchButton"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:src="@drawable/barcode_icon"
+                android:id="@+id/tree_image"
+                android:layout_height="60dp"
+                android:layout_width="60dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="20dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="#444"
+                    android:textStyle="bold"
+                    android:textSize="22dp"
+                    android:id="@+id/tree_name" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="#777"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:id="@+id/tree_description" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="#444"
+                    android:id="@+id/tree_address" />
+                <Button
+                    android:id="@+id/tree_view_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#fff"
+                    android:layout_marginTop="20px"
+                    android:text="View Location" />
+            </LinearLayout>
+        </TableRow>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="@string/switch_button_text" />
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:layout_below="@id/tree_detail"
+            android:id="@+id/tree_interact"
+            android:layout_marginTop="50dp">
+
+            <Switch
+                android:id="@+id/switchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/switch_button_text"
+                android:textStyle="bold"
+                android:textSize="20dp"/>
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="ON" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Android Switch Button" />
+            android:layout_below="@id/tree_interact"
+            android:id="@+id/tree_video"
+            android:layout_marginTop="20dp">
 
-    </LinearLayout>
-
-</RelativeLayout>
+            <com.google.android.youtube.player.YouTubePlayerView
+                android:id="@+id/youtube_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

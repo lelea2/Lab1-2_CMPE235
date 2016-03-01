@@ -6,16 +6,17 @@ package com.example.kdao.lab1_cmpe235.data;
 public class Tree {
     String name;
     String description;
-    String url;
+    String videoId;
     int icon;
     Location location;
 
-    public Tree(String description, int icon, String url, Location location) {
+    public Tree(String description, int icon, String videoId, Location location) {
         this.description = description;
         this.icon = icon;
-        this.url = url;
+        this.videoId = videoId;
         this.location = location;
     }
+
 
     public int getIcon() {
         return icon;
@@ -25,12 +26,12 @@ public class Tree {
         this.icon = icon;
     }
 
-    public String getUrl() {
-        return url;
+    public String getVideoId() {
+        return videoId;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setVideoId(String videoId) {
+        this.videoId = videoId;
     }
 
     public Location getLocation() {
