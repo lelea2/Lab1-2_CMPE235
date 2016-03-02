@@ -20,6 +20,7 @@ import java.io.*;
 import android.os.Environment;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 
 public class CameraActivity extends AppCompatActivity {
 
@@ -38,17 +39,25 @@ public class CameraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+        getElements();
         handleCameraButton();
         handleHomeIconClick();
         handleSharePhoto();
     }
 
     /**
+     * Private helper identify all the element
+     */
+    private void getElements() {
+        cameraButton = (Button)findViewById(R.id.camera_btn);
+        shareButton = (Button) findViewById(R.id.image_share_btn);
+        viewImage= (ImageView)findViewById(R.id.viewImage);
+    }
+
+    /**
      * Handle click on camera button
      */
     private void handleCameraButton() {
-        cameraButton=(Button)findViewById(R.id.camera_btn);
-        viewImage=(ImageView)findViewById(R.id.viewImage);
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,11 +70,32 @@ public class CameraActivity extends AppCompatActivity {
      * Private function to handle share photo
      */
     private void handleSharePhoto() {
-        shareButton = (Button)findViewById(R.id.image_share_btn);
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+                BitmapDrawable bitmapDrawable = (BitmapDrawable)viewImage.getDrawable();
+                Bitmap bitmap = bitmapDrawable.getBitmap();
 
+                // Save this bitmap to a file.
+                File cache = getApplicationContext().getExternalCacheDir();
+                File sharefile = new File(cache, "toshare.png");
+                try {
+                    FileOutputStream out = new FileOutputStream(sharefile);
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+                    out.flush();
+                    out.close();
+                } catch (IOException e) {
+                    Log.e(TAG, e.toString());
+                }
+                // Now send it out to share
+                Intent share = new Intent(android.content.Intent.ACTION_SEND);
+                share.setType("image/*");
+                share.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + sharefile));
+                try {
+                    startActivity(Intent.createChooser(share, "Share photo"));
+                } catch (Exception e) {
+                    Log.e(TAG, e.toString());
+                }
             }
         });
     }
