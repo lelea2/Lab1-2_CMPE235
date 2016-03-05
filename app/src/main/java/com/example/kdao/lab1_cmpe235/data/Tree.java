@@ -10,6 +10,13 @@ public class Tree {
     int icon;
     Location location;
 
+    /**
+     * Constructor of tree class
+     * @param description
+     * @param icon
+     * @param videoId
+     * @param location
+     */
     public Tree(String description, int icon, String videoId, Location location) {
         this.description = description;
         this.icon = icon;
@@ -17,7 +24,7 @@ public class Tree {
         this.location = location;
     }
 
-
+    //Getter & Setter method
     public int getIcon() {
         return icon;
     }

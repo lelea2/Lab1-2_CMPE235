@@ -32,6 +32,7 @@ public class CameraActivity extends AppCompatActivity {
     static int CHOOSE_PHOTO = 2;
 
     Button cameraButton;
+    Button videoButton;
     Button shareButton;
     ImageView viewImage;
 
@@ -41,8 +42,23 @@ public class CameraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_camera);
         getElements();
         handleCameraButton();
+        handleVideoButton();
         handleHomeIconClick();
         handleSharePhoto();
+    }
+
+    /**
+     * Private function to handle Video Button
+     */
+    private void handleVideoButton() {
+        videoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "Barcode action");
+                Intent videoView = new Intent(CameraActivity.this, VideoActivity.class);
+                startActivity(videoView);
+            }
+        });
     }
 
     /**
@@ -50,6 +66,7 @@ public class CameraActivity extends AppCompatActivity {
      */
     private void getElements() {
         cameraButton = (Button)findViewById(R.id.camera_btn);
+        videoButton = (Button)findViewById(R.id.video_btn);
         shareButton = (Button) findViewById(R.id.image_share_btn);
         viewImage= (ImageView)findViewById(R.id.viewImage);
     }
@@ -116,6 +133,9 @@ public class CameraActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Function handle image selecting (either taken photo or chosen from gallery)
+     */
     private void selectImage() {
         AlertDialog.Builder builder = new AlertDialog.Builder(CameraActivity.this);
         builder.setTitle("Add Photo!");
@@ -138,6 +158,12 @@ public class CameraActivity extends AppCompatActivity {
         builder.show();
     }
 
+    /**
+     * Function handle image result after image is taken
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

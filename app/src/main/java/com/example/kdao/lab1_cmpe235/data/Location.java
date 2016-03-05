@@ -9,6 +9,13 @@ public class Location {
     String address;
     String name;
 
+    /**
+     * Constructor class
+     * @param latitude
+     * @param longitude
+     * @param address
+     * @param name
+     */
     public Location(double latitude, double longitude, String address, String name) {
         this.latitude = latitude;
         this.longitude = longitude;
@@ -16,6 +23,7 @@ public class Location {
         this.name = name;
     }
 
+    //Getter and setter method
     public double getLatitude() {
         return latitude;
     }

@@ -19,7 +19,7 @@ public class CommentActivity extends AppCompatActivity {
     private final static String TITLE = "Rate Us";
 
     // Insert your Application Package Name
-    private final static String PACKAGE_NAME = "com.example.kdao.lab1_cmpe235";
+    private final static String PACKAGE_NAME = "com.kdao.lab1_cmpe235";
 
     // Day until the Rate Us Dialog Prompt(Default 2 Days)
     private final static int DAYS_UNTIL_PROMPT = 0;

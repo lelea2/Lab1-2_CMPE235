@@ -19,14 +19,27 @@
         android:layout_alignRight="@+id/scan_text"
         android:layout_alignEnd="@+id/scan_text" />
 
-    <Button
-        android:id="@+id/camera_btn"
-        android:layout_width="wrap_content"
+    <TableLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/home_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20px"
-        android:text="@string/camera_btn"/>
+        android:id="@+id/button_table"
+        android:stretchColumns="*">
+        <TableRow>
+            <Button
+                android:id="@+id/camera_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/camera_btn"/>
+            <Button
+                android:id="@+id/video_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/video_btn"/>
+        </TableRow>
+    </TableLayout>
 
     <ImageView
         android:id="@+id/viewImage"
@@ -34,7 +47,7 @@
         android:layout_width="200pt"
         android:layout_height="200pt"
         android:scaleType="fitXY"
-        android:layout_below="@id/camera_btn"
+        android:layout_below="@id/button_table"
         android:layout_marginTop="20px"
         android:layout_centerHorizontal="true" />
 

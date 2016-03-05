@@ -8,6 +8,10 @@ import android.widget.Button;
 
 public class SharingActivity extends AppCompatActivity {
 
+    /**
+     * Sharing on share page (we actually not use this, but just for testing)
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +25,10 @@ public class SharingActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Function handle when click on shareIt button
+     */
     private void shareIt() {
         //sharing button implementation
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);

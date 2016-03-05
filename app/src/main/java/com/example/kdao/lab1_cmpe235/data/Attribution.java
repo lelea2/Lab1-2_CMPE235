@@ -2,7 +2,7 @@ package com.example.kdao.lab1_cmpe235.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Attribution implements Parcelable{
+public class Attribution implements Parcelable {
 
     // Attribution of the photo
     public String mHtmlAttribution="";
@@ -18,16 +18,21 @@ public class Attribution implements Parcelable{
         dest.writeString(mHtmlAttribution);
     }
 
-    public Attribution(){
+    /**
+     * Constructor
+     */
+    public Attribution(){}
 
-    }
-
-    /**  Initializing Attribution object from Parcel object */
+    /**
+     * Initializing Attribution object from Parcel object
+     */
     private Attribution(Parcel in){
         this.mHtmlAttribution = in.readString();
     }
 
-    /** Generates an instance of Attribution class from Parcel */
+    /**
+     * Generates an instance of Attribution class from Parcel
+     */
     public static final Parcelable.Creator<Attribution> CREATOR = new Parcelable.Creator<Attribution>() {
 
         @Override

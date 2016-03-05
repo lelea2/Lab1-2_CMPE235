@@ -63,7 +63,7 @@ public class PlaceDialogFragment extends DialogFragment {
         // Getting reference to TextView to display place vicinity
         mTVVicinity = (TextView) v.findViewById(R.id.tv_vicinity);
         //Handle button click
-        mTVButton = (Button) v.findViewById(R.id.get_direction);
+        //mTVButton = (Button) v.findViewById(R.id.get_direction);
         handleGetDirection();
         if(mPlace!=null){
             // Setting the title for the Dialog Fragment
