@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_background"
+    android:background="@drawable/activity_background"
     android:scaleType = "centerCrop"
     tools:context="com.example.kdao.lab1_cmpe235.SplashActivity"
     tools:showIn="@layout/activity_splash">

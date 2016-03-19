@@ -52,23 +52,23 @@ public class SigninActivity extends AppCompatActivity {
      * @method loginUser
      */
     public void loginUser(View view) {
-        /*String email = emailText.getText().toString();
+        String email = emailText.getText().toString();
         String password = pwdText.getText().toString();
         // Instantiate Http Request Param Object
-        RequestParams params = new RequestParams();
+        //RequestParams params = new RequestParams();
         // When Email Edit View and Password Edit View have values other than Null
         if(!Utility.isEmptyString(email) && !Utility.isEmptyString(password)) {
             // When Email entered is Valid
             if(Utility.isEmailValid(email)){
-                params.put("username", email);
-                params.put("password", password);
-                invokeWS(params);
+               // params.put("username", email);
+               // params.put("password", password);
+                //invokeWS(params);
             } else { // When Email is invalid
                 Toast.makeText(getApplicationContext(), "Please enter valid email", Toast.LENGTH_LONG).show();
             }
         } else { //Empty form handle
             Toast.makeText(getApplicationContext(), "Please fill in the form", Toast.LENGTH_LONG).show();
-        }*/
+        }
     }
 
     /**
