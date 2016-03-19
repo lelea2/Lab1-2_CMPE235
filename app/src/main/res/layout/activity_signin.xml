@@ -67,7 +67,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dip"
-            android:background="@null"
+            android:background="#ededed"
             android:onClick="navigatetoSignupActivity"
             android:text="Signup"
             android:textColor="#228b22"

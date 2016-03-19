@@ -31,6 +31,7 @@
     <string name="register_title">Sign Up</string>
     <string name="login_title">Sign In</string>
     <string name="name">Name</string>
+    <string name="phone">Phone</string>
     <string name="email">Email</string>
     <string name="pwd">Password</string>
     <string name="register_btn">Register</string>

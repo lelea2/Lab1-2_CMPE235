@@ -39,6 +39,20 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" android:hint="Enter your Name"/>
 
+        <!-- Phone Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/phone" />
+        <!-- Phone textfield -->
+        <EditText
+            android:id="@+id/registerPhone"
+            android:inputType="phone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your Phone"
+            android:digits="0123456789+" />
+
         <!-- Email Label -->
 
         <TextView
@@ -97,8 +111,8 @@
             android:id="@+id/btnLinkToLoginScreen"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:background="@null"
+            android:layout_marginTop="20dp"
+            android:background="#eded"
             android:onClick="navigatetoLoginActivity"
             android:text="Login"
             android:textColor="#228b22"
