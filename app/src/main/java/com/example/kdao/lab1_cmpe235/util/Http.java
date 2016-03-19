@@ -56,7 +56,7 @@ public class Http {
     public Bitmap downloadImage(String strUrl) throws IOException {
         Bitmap bitmap=null;
         InputStream iStream = null;
-        try{
+        try {
             URL url = new URL(strUrl);
             /** Creating an http connection to communicate with url */
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
