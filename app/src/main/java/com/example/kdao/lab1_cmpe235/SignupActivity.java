@@ -8,6 +8,9 @@ import android.app.ProgressDialog;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.view.View;
+import android.widget.Toast;
+
+import com.example.kdao.lab1_cmpe235.util.Utility;
 
 public class SignupActivity extends AppCompatActivity {
     ProgressDialog prgDialog;
@@ -37,6 +40,39 @@ public class SignupActivity extends AppCompatActivity {
         prgDialog = new ProgressDialog(this);
         prgDialog.setMessage("Please wait...");
         prgDialog.setCancelable(false);
+    }
+
+    /**
+     * Method trigger when click on register user
+     *
+     * @method registerUser
+     */
+    public void registerUser(View view) {
+        String email = emailInput.getText().toString();
+        String password = pwdInput.getText().toString();
+        String name = nameInput.getText().toString();
+        String phone = phoneInput.getText().toString();
+        if (!Utility.isEmptyString(email) && !Utility.isEmptyString(password) && !Utility.isEmptyString(name) && !Utility.isEmptyString(phone)) {
+            // When Email entered is Valid
+            if (Utility.isEmailValid(email)) {
+                signupUser(email, password, name, phone);
+            } else { // When Email is invalid
+                Toast.makeText(getApplicationContext(), "Please enter valid email", Toast.LENGTH_LONG).show();}
+
+        } else { //Handle empty form
+            Toast.makeText(getApplicationContext(), "Please fill in the form", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     * Private method for signup user
+     * @param email
+     * @param password
+     * @param name
+     * @param phone
+     */
+    private void signupUser(String email, String password, String name, String phone) {
+
     }
 
     /**
