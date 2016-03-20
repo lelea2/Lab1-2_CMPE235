@@ -1,6 +1,7 @@
 package com.example.kdao.lab1_cmpe235;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -10,7 +11,20 @@ import android.widget.EditText;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.kdao.lab1_cmpe235.util.Config;
 import com.example.kdao.lab1_cmpe235.util.Utility;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class SignupActivity extends AppCompatActivity {
     ProgressDialog prgDialog;
@@ -72,7 +86,69 @@ public class SignupActivity extends AppCompatActivity {
      * @param phone
      */
     private void signupUser(String email, String password, String name, String phone) {
-
+        class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
+            @Override
+            protected String doInBackground(String... params) {
+                String userEmail = params[0];
+                String userPassword = params[1];
+                String name = params[2];
+                String phone = params[3];
+                HttpClient httpClient = new DefaultHttpClient();
+                HttpPut httpPut = new HttpPut(Config.BASE_URL + "/user/register");
+                JSONObject json = new JSONObject();
+                try {
+                    json.put("email", userEmail);
+                    json.put("password", userPassword);
+                    json.put("userName", name);
+                    json.put("phoneNum", phone);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    StringEntity se = new StringEntity(json.toString());
+                    System.out.println(se);
+                    se.setContentEncoding("UTF-8");
+                    httpPut.setEntity(se);
+                    try {
+                        HttpResponse httpResponse = httpClient.execute(httpPut);
+                        InputStream inputStream = httpResponse.getEntity().getContent();
+                        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                        StringBuilder stringBuilder = new StringBuilder();
+                        String bufferedStrChunk = null;
+                        while((bufferedStrChunk = bufferedReader.readLine()) != null) {
+                            stringBuilder.append(bufferedStrChunk);
+                        }
+                        return stringBuilder.toString();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } catch (Exception uee) {
+                    System.out.println("An Exception given because of UrlEncodedFormEntity argument :" + uee);
+                    uee.printStackTrace();
+                }
+                return null;
+            }
+            @Override
+            protected void onPostExecute(String result) {
+                super.onPostExecute(result);
+                //System.out.println(result);
+                String userId = "";
+                try {
+                    JSONObject jObject  = new JSONObject(result);
+                    userId = (String) jObject.get("userId");
+                } catch(Exception ex) {
+                }
+                if(!Utility.isEmptyString(userId)){
+                    navigateToMainActivity();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Invalid email or password. Please " +
+                            "try again!", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+        SendPostReqAsyncTask sendPostReqAsyncTask = new SendPostReqAsyncTask();
+        sendPostReqAsyncTask.execute(email, password);
     }
 
     /**
