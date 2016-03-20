@@ -8,9 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -27,11 +29,38 @@ public class CommentActivity extends AppCompatActivity {
     // App launches until Rate Us Dialog Prompt(Default 5 Launches)
     private final static int LAUNCHES_UNTIL_PROMPT = 2;
 
+    static String TAG = "CommentActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
-        app_launched(this);
+        //Comment to app stores
+        //app_launched(this);
+        handleHomeIconClick();
+    }
+
+    /**
+     * Handle click on homeicon
+     */
+    private void handleHomeIconClick() {
+        ImageView homeicon = (ImageView) findViewById(R.id.home_icon);
+        homeicon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "Go back home action");
+                Intent mainView = new Intent(CommentActivity.this, MainActivity.class);
+                startActivity(mainView);
+            }
+        });
+    }
+
+    /**
+     * Public function handling add comment
+     * @method addComment
+     */
+    public void addComment(View view) {
+        
     }
 
     /**
