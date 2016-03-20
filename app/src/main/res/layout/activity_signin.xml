@@ -24,6 +24,17 @@
             android:textSize="25sp"
             android:textStyle="bold" />
 
+        <Button
+            android:id="@+id/btnBarcodeLogin"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="#e5c100"
+            android:onClick="loginByBarCode"
+            android:text="Login By Barcode"
+            android:layout_marginBottom="40dp"
+            android:textColor="#ff6347" />
+
         <EditText
             android:id="@+id/loginEmail"
             android:layout_width="fill_parent"

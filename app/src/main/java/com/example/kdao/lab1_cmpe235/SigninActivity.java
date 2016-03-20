@@ -17,6 +17,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -35,11 +36,15 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import com.example.kdao.lab1_cmpe235.util.PreferenceData;
+
 public class SigninActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     TextView errMsg;
     EditText emailText;
     EditText pwdText;
+
+    static String TAG = "SigninActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +98,6 @@ public class SigninActivity extends AppCompatActivity {
                 String userEmail = params[0];
                 String userPassword = params[1];
                 HttpClient httpClient = new DefaultHttpClient();
-                System.out.println("String url=" + Config.BASE_URL + "/user/login");
                 HttpPost httpPost = new HttpPost(Config.BASE_URL + "/user/login");
                 JSONObject json = new JSONObject();
                 try {
@@ -104,7 +108,6 @@ public class SigninActivity extends AppCompatActivity {
                 }
                 try {
                     StringEntity se = new StringEntity(json.toString());
-                    System.out.println(se);
                     se.setContentEncoding("UTF-8");
                     httpPost.setEntity(se);
                     try {
@@ -139,6 +142,8 @@ public class SigninActivity extends AppCompatActivity {
                 }
                 if(!Utility.isEmptyString(userId)){
                     //Toast.makeText(getApplicationContext(), "working", Toast.LENGTH_LONG).show();
+                    PreferenceData.setUserLoggedInStatus(getApplication(), true);
+                    PreferenceData.setLoggedInUserId(getApplication(), userId);
                     navigateToMainActivity();
                 } else {
                     Toast.makeText(getApplicationContext(), "Invalid email or password. Please " +
@@ -158,6 +163,18 @@ public class SigninActivity extends AppCompatActivity {
         Intent loginIntent = new Intent(getApplicationContext(), SignupActivity.class);
         loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(loginIntent);
+    }
+
+    /**
+     * Public method to navigate to page to login by barcode
+     * @method loginByBarCode
+     */
+    public void loginByBarCode(View view) {
+        Intent launchActivity = new Intent(SigninActivity.this, BarCodeActivity.class);
+        Log.i(TAG, "Sign-in with barcode");
+        //navigate to barcode page with SIGN_IN_WITH_BARCODE flag
+        launchActivity.putExtra("SIGN_IN_WITH_BARCODE", "1");
+        startActivity(launchActivity);
     }
 
     /**

@@ -26,6 +26,8 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import com.example.kdao.lab1_cmpe235.util.PreferenceData;
+
 public class SignupActivity extends AppCompatActivity {
     ProgressDialog prgDialog;
     TextView errMsg;
@@ -139,7 +141,9 @@ public class SignupActivity extends AppCompatActivity {
                     userId = (String) jObject.get("userId");
                 } catch(Exception ex) {
                 }
-                if(!Utility.isEmptyString(userId)){
+                if(!Utility.isEmptyString(userId)) {
+                    PreferenceData.setUserLoggedInStatus(getApplication(), true);
+                    PreferenceData.setLoggedInUserId(getApplication(), userId);
                     navigateToMainActivity();
                 } else {
                     Toast.makeText(getApplicationContext(), "Invalid email or password. Please " +
@@ -148,7 +152,7 @@ public class SignupActivity extends AppCompatActivity {
             }
         }
         SendPostReqAsyncTask sendPostReqAsyncTask = new SendPostReqAsyncTask();
-        sendPostReqAsyncTask.execute(email, password);
+        sendPostReqAsyncTask.execute(email, password, name, phone);
     }
 
     /**

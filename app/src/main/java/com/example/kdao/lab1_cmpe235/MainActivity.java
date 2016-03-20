@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.kdao.lab1_cmpe235.util.PreferenceData;
+
 public class MainActivity extends AppCompatActivity {
 
     static String TAG = "MainActivity";
@@ -17,13 +19,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Handle icon click on main activity
-        aboutClick(); //click on about icon
-        interactClick(); //click on interact icon
-        sharingClick(); //click on sharing icon
-        nearByClick(); //click on nearby icon
-        cameraClick(); //click on camera icon
-        commentClick(); //click on comment icon
+        boolean isUserLoggedIn = PreferenceData.getUserLoggedInStatus(getApplicationContext());
+        if (isUserLoggedIn == false) { //If user not signin, then navigate back to signin page
+            Intent signinIntent = new Intent(getApplicationContext(), SigninActivity.class);
+           startActivity(signinIntent);
+        } else {
+            //Handle icon click on main activity
+            aboutClick(); //click on about icon
+            interactClick(); //click on interact icon
+            sharingClick(); //click on sharing icon
+            nearByClick(); //click on nearby icon
+            cameraClick(); //click on camera icon
+            commentClick(); //click on comment icon
+        }
     }
 
     /**
