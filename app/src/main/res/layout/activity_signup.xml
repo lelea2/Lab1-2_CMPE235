@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="#eded"
-            android:onClick="navigatetoLoginActivity"
+            android:onClick="navigatetoSigninActivity"
             android:text="Login"
             android:textColor="#228b22"
             android:textStyle="bold" />
