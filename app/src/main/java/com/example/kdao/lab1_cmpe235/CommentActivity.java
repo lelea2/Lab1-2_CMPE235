@@ -60,7 +60,7 @@ public class CommentActivity extends AppCompatActivity {
      * @method addComment
      */
     public void addComment(View view) {
-        
+
     }
 
     /**

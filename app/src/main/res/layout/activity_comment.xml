@@ -17,14 +17,35 @@
         android:layout_width="60dp"
         android:scaleType="fitXY" />
 
+    <TextView
+        android:id="@+id/comment_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/home_icon"
+        android:layout_marginBottom="10dip"
+        android:text="Rate This App"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/comment_title"
+        android:layout_marginTop="20dp"
+        android:numStars="4"
+        android:stepSize="1.0"
+        android:rating="2.0" />
+
     <EditText
         android:id="@+id/commentText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minLines= "3"
+        android:layout_marginTop="10dp"
+        android:minLines= "5"
         android:scrollbars = "vertical"
         android:background="#fff"
-        android:layout_below="@id/home_icon">
+        android:layout_below="@id/ratingBar">
         <requestFocus />
     </EditText>
 
@@ -36,16 +57,6 @@
         android:background="#ff6347"
         android:layout_below="@id/commentText"
         android:onClick="addComment"
-        android:text="Submit My Comment"
+        android:text="Submit"
         android:textColor="#fff" />
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/btnComment"
-        android:layout_marginTop="40dp"
-        android:background="#eee"
-        android:textColor="#444"
-        android:id="@+id/commentList" />
-
 </RelativeLayout>
