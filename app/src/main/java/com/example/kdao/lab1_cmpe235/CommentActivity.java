@@ -1,5 +1,6 @@
 package com.example.kdao.lab1_cmpe235;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -12,9 +13,28 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.RatingBar;
+import android.widget.Toast;
+
+import com.example.kdao.lab1_cmpe235.util.Config;
+import com.example.kdao.lab1_cmpe235.util.PreferenceData;
+import com.example.kdao.lab1_cmpe235.util.Utility;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class CommentActivity extends AppCompatActivity {
     // Insert your Application Title
@@ -30,6 +50,8 @@ public class CommentActivity extends AppCompatActivity {
     private final static int LAUNCHES_UNTIL_PROMPT = 2;
 
     static String TAG = "CommentActivity";
+    private EditText commentText;
+    private RatingBar ratingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +59,8 @@ public class CommentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_comment);
         //Comment to app stores
         //app_launched(this);
+        commentText = (EditText) findViewById(R.id.commentText);
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         handleHomeIconClick();
     }
 
@@ -60,7 +84,86 @@ public class CommentActivity extends AppCompatActivity {
      * @method addComment
      */
     public void addComment(View view) {
+        String rateValue = String.valueOf(ratingBar.getRating());
+        String comment = commentText.getText().toString();
+        if (Utility.isEmptyString(comment)) {
+            Toast.makeText(CommentActivity.this, "Please fill out your comment", Toast.LENGTH_LONG).show();
+        } else {
+            addCommentToDB(rateValue, comment);
+        }
+    }
 
+    /**
+     * Private function update new comment to DB
+     * @method addCommentToDB
+     */
+    private void addCommentToDB(String rateValue, String comment) {
+        class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
+            @Override
+            protected String doInBackground(String... params) {
+                String rateValue = params[0];
+                String comment = params[1];
+                HttpClient httpClient = new DefaultHttpClient();
+                HttpPut httpPut = new HttpPut(Config.BASE_URL + "/comment/add");
+                JSONObject json = new JSONObject();
+                try {
+                    json.put("comment", comment);
+                    json.put("rating", rateValue);
+                    json.put("userId", PreferenceData.getLoggedInUserId(getApplicationContext()));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    StringEntity se = new StringEntity(json.toString());
+                    se.setContentEncoding("UTF-8");
+                    httpPut.setEntity(se);
+                    try {
+                        HttpResponse httpResponse = httpClient.execute(httpPut);
+                        InputStream inputStream = httpResponse.getEntity().getContent();
+                        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                        StringBuilder stringBuilder = new StringBuilder();
+                        String bufferedStrChunk = null;
+                        while((bufferedStrChunk = bufferedReader.readLine()) != null) {
+                            stringBuilder.append(bufferedStrChunk);
+                        }
+                        return stringBuilder.toString();
+                    } catch (Exception e) {
+                        System.out.println("An Exception given because of UrlEncodedFormEntity " +
+                                "argument :" + e);
+                        e.printStackTrace();
+                    }
+                } catch (Exception uee) {
+                    System.out.println("An Exception given because of UrlEncodedFormEntity argument :" + uee);
+                    uee.printStackTrace();
+                }
+                return "error";
+            }
+            @Override
+            protected void onPostExecute(String result) {
+                super.onPostExecute(result);
+                if (result == "error") { //error case
+                    Toast.makeText(getApplicationContext(), "Technical difficulty, please try " +
+                            "again!", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Comment added successfully", Toast
+                            .LENGTH_LONG).show();
+                    navigateToCommentListActivity();
+                }
+            }
+        }
+        SendPostReqAsyncTask sendPostReqAsyncTask = new SendPostReqAsyncTask();
+        sendPostReqAsyncTask.execute(rateValue, comment);
+    }
+
+    /**
+     * Function to navigate to comment list
+     * @method navigateToCommentListActivity
+     */
+    private void navigateToCommentListActivity() {
+        Intent commentListIntent = new Intent(getApplicationContext(), CommentListActivity.class);
+        commentListIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(commentListIntent);
     }
 
     /**

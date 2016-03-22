@@ -44,6 +44,7 @@
         android:layout_marginTop="10dp"
         android:minLines= "5"
         android:scrollbars = "vertical"
+        android:textColor="#444"
         android:background="#fff"
         android:layout_below="@id/ratingBar">
         <requestFocus />
