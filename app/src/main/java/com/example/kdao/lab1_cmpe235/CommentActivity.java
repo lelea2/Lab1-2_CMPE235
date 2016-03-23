@@ -94,6 +94,14 @@ public class CommentActivity extends AppCompatActivity {
     }
 
     /**
+     * Public function handle view all comment
+     * @method viewAllComment
+     */
+    public void viewAllComment(View view) {
+        navigateToCommentListActivity();
+    }
+
+    /**
      * Private function update new comment to DB
      * @method addCommentToDB
      */

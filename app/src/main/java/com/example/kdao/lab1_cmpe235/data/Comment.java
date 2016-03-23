@@ -9,6 +9,18 @@ public class Comment {
     int rating;
 
     /**
+     * Construtor class
+     * @param comment
+     * @param username
+     * @param rating
+     */
+    public Comment(String comment, String username, int rating) {
+        this.comment = comment;
+        this.username = username;
+        this.rating = rating;
+    }
+
+    /**
      * Get rating
      * @return
      */

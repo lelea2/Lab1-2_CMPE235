@@ -60,4 +60,15 @@
         android:onClick="addComment"
         android:text="Submit"
         android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/btnAllComment"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#eee"
+        android:layout_below="@id/btnComment"
+        android:onClick="viewAllComment"
+        android:text="View All Comment"
+        android:textColor="#fff" />
 </RelativeLayout>
