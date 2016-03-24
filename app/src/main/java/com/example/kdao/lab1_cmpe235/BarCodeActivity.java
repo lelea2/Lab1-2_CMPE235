@@ -50,19 +50,23 @@ public class BarCodeActivity extends AppCompatActivity implements OnClickListene
     private TextView formatTxt;
     private TextView contentTxt;
     private TextView scanTxt;
-    private String signinWithBarCode;
+    private String signinWithBarCode = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bar_code);
-        Bundle extras = getIntent().getExtras();
-        signinWithBarCode = extras.getString("SIGN_IN_WITH_BARCODE");
+        try {
+            Bundle extras = getIntent().getExtras();
+            signinWithBarCode = extras.getString("SIGN_IN_WITH_BARCODE");
+        } catch(Exception ex) {
+            //catching
+        }
         scanBtn = (ImageView)findViewById(R.id.scan_button);
         formatTxt = (TextView)findViewById(R.id.scan_format);
         contentTxt = (TextView)findViewById(R.id.scan_content);
         scanTxt = (TextView)findViewById(R.id.scan_text);
-        if (signinWithBarCode == "1") {
+        if (signinWithBarCode.equals("1")) {
             scanTxt.setText("Scan barcode to log in");
         }
         scanBtn.setOnClickListener(this);
@@ -110,7 +114,7 @@ public class BarCodeActivity extends AppCompatActivity implements OnClickListene
             //formatTxt.setText("FORMAT: " + scanFormat);
             //contentTxt.setText("CONTENT: " + scanContent);
             //Direct user to interact page with value of barcode
-            if (signinWithBarCode == "1") {
+            if (signinWithBarCode.equals("1")) {
                 logUserIn(scanContent);
             } else {
                 Intent launchActivity = new Intent(BarCodeActivity.this, InteractActivity.class);
