@@ -20,6 +20,7 @@
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:text="REC"
-            android:textSize="12dp"/>
+            android:textSize="12dp"
+            android:onClick="recordVideo"/>
     </RelativeLayout>
 </LinearLayout>

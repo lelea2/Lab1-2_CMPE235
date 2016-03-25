@@ -130,4 +130,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     *  Function to handle sign-out on Android
+     *  @method handleSignOut
+     */
+    public void handleSignOut(View view) {
+        PreferenceData.clearLoggedInEmailAddress(getApplicationContext());
+        Intent signInView = new Intent(MainActivity.this, SigninActivity.class);
+        signInView.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(signInView);
+    }
 }

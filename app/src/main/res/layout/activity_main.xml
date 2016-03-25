@@ -101,5 +101,17 @@
                     android:layout_margin="8dp" />
             </TableRow>
         </TableLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/gridview"
+            android:textSize="25dp"
+            android:textColor="#fff"
+            android:text="Sign Out"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:onClick="handleSignOut" />
     </RelativeLayout>
 </ScrollView>

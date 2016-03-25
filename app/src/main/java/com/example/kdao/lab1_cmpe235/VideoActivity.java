@@ -24,6 +24,7 @@ public class VideoActivity extends Activity{
     Button myButton;
     SurfaceHolder surfaceHolder;
     boolean recording;
+    boolean sharing;
 
     /** Called when the activity is first created. */
     @Override
@@ -31,15 +32,14 @@ public class VideoActivity extends Activity{
         super.onCreate(savedInstanceState);
 
         recording = false;
+        sharing = false;
 
         setContentView(R.layout.activity_video);
 
         //Get Camera for preview
         myCamera = getCameraInstance();
         if(myCamera == null){
-            Toast.makeText(getApplicationContext(),
-                    "Fail to get Camera",
-                    Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Fail to get Camera", Toast.LENGTH_LONG).show();
         }
 
         myCameraSurfaceView = new MyCameraSurfaceView(this, myCamera);
@@ -47,36 +47,31 @@ public class VideoActivity extends Activity{
         myCameraPreview.addView(myCameraSurfaceView);
 
         myButton = (Button)findViewById(R.id.mybutton);
-        myButton.setOnClickListener(myButtonOnClickListener);
     }
 
     /**
      * Hanlde button click event for video
+     * @method recordVideo
      */
-    Button.OnClickListener myButtonOnClickListener = new Button.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            // TODO Auto-generated method stub
-            if(recording){
-                // stop recording and release camera
-                mediaRecorder.stop();  // stop the recording
-                releaseMediaRecorder(); // release the MediaRecorder object
-                //Exit after saved
-                finish();
-            } else {
-                //Release Camera before MediaRecorder start
-                releaseCamera();
-                if(!prepareMediaRecorder()){
-                    Toast.makeText(getApplicationContext(),
-                            "Fail in prepareMediaRecorder()!\n - Ended -",
-                            Toast.LENGTH_LONG).show();
-                    finish();
-                }
-                mediaRecorder.start();
-                recording = true;
-                myButton.setText("STOP");
+    public void recordVideo(View view) {
+        if(recording) { // stop recording and release camera
+            mediaRecorder.stop();  // stop the recording
+            releaseMediaRecorder(); // release the MediaRecorder object
+            //Exit after saved
+            //myButton.setText("SHARE");
+            sharing = true;
+            finish();
+        } else { //Release Camera before MediaRecorder start
+            releaseCamera();
+            if(!prepareMediaRecorder()){
+                Toast.makeText(getApplicationContext(), "Fail in prepareMediaRecorder()!\n - Ended -", Toast.LENGTH_LONG).show();
+                finish(); //exit
             }
-        }};
+            mediaRecorder.start();
+            recording = true;
+            myButton.setText("STOP");
+        }
+    };
 
     private Camera getCameraInstance(){
         // TODO Auto-generated method stub
@@ -97,7 +92,7 @@ public class VideoActivity extends Activity{
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.CAMCORDER);
         mediaRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
         mediaRecorder.setProfile(CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH));
-        mediaRecorder.setOutputFile("/sdcard/myvideo.mp4");
+        mediaRecorder.setOutputFile("/sdcard/video_sample.mp4");
         mediaRecorder.setMaxDuration(60000); // Set max duration 60 sec.
         mediaRecorder.setMaxFileSize(5000000); // Set max file size 5M
         mediaRecorder.setPreviewDisplay(myCameraSurfaceView.getHolder().getSurface());

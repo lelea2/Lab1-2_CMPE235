@@ -133,6 +133,7 @@ public class BarCodeActivity extends AppCompatActivity implements OnClickListene
      * Private function to log user in
      */
     private void logUserIn(String userId) {
+        scanBtn.setImageResource(R.drawable.progressbar);
         class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
             @Override
             protected String doInBackground(String... params) {
@@ -175,6 +176,7 @@ public class BarCodeActivity extends AppCompatActivity implements OnClickListene
                     PreferenceData.setLoggedInUserId(getApplication(), userId);
                     navigateToMainActivity();
                 } else {
+                    scanBtn.setImageResource(R.drawable.scanner);
                     Toast.makeText(getApplicationContext(), "Invalid barcode. Please " +
                             "try again!", Toast.LENGTH_LONG).show();
                 }

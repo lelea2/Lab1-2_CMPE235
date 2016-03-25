@@ -140,9 +140,9 @@ public class CommentListActivity extends AppCompatActivity {
             TextView username = (TextView) itemView.findViewById(R.id.item_userName);
             username.setText(comment.getUsername());
             TextView commentTxt = (TextView) itemView.findViewById(R.id.item_comment);
-            commentTxt.setText(comment.getComment());
+            commentTxt.setText("Comment: " + comment.getComment());
             TextView ratingTxt = (TextView) itemView.findViewById(R.id.item_rating);
-            ratingTxt.setText((comment.getRating() + ""));
+            ratingTxt.setText("Rating: " + (comment.getRating() + ""));
             return itemView;
         }
     }
