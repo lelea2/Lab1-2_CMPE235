@@ -62,7 +62,7 @@ public class CommentListActivity extends AppCompatActivity {
         for (int i = 0; i < arrayObj.size(); i++) {
             try {
                 JSONObject object = (JSONObject) arrayObj.get(i);
-                comments.add(new Comment(object.get("comment").toString(), object.get("userName")
+                comments.add(new Comment(object.get("comment").toString(), object.get("firstName")
                         .toString(), Integer.parseInt(object.get("rating").toString())));
             } catch(Exception e) {
                 System.out.println(e);

@@ -118,6 +118,9 @@ public class CommentActivity extends AppCompatActivity {
                     json.put("comment", comment);
                     json.put("rating", rateValue);
                     json.put("userId", PreferenceData.getLoggedInUserId(getApplicationContext()));
+                    json.put("treeId", "096de404-9e77-4218-b127-37db49f4feae"); //default tree Id
+                    // for demo
+                    json.put("islike", true);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -101,7 +101,8 @@ public class SignupActivity extends AppCompatActivity {
                 try {
                     json.put("email", userEmail);
                     json.put("password", userPassword);
-                    json.put("userName", name);
+                    json.put("firstName", name);
+                    json.put("lastName", name);
                     json.put("phoneNum", phone);
                 } catch (JSONException e) {
                     e.printStackTrace();
