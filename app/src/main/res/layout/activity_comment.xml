@@ -46,6 +46,9 @@
         android:scrollbars = "vertical"
         android:textColor="#444"
         android:background="#fff"
+        android:gravity="left|top"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:layout_below="@id/ratingBar">
         <requestFocus />
     </EditText>
